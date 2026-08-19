@@ -1,0 +1,20 @@
+[
+  {
+    "guidance_type": "revenue",
+    "stated_value": "0% to 2.0% sequential growth (constant currency)",
+    "direction": "range",
+    "confidence": "high",
+    "source_excerpt": "we are projecting sequential IT Services revenue growth of 0% to 2.0% in constant currency",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY26_transcript.txt"
+  },
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "continued focus on large deal wins and AI-led transformation",
+    "direction": "unclear",
+    "confidence": "medium",
+    "source_excerpt": "[MOCK] placeholder qualitative guidance excerpt",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY26_transcript.txt"
+  }
+]

@@ -1,0 +1,7 @@
+pandas
+pdfplumber
+anthropic
+psycopg2-binary
+sqlalchemy
+python-dotenv
+yfinance
