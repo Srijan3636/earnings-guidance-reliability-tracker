@@ -1,11 +1,32 @@
 # Earnings Guidance Reliability Tracker
 
-AI-assisted pipeline that extracts structured management guidance from
-earnings call transcripts, validates extraction accuracy against hand-labelled
-data, and joins guidance to what actually got reported.
+**In plain English:** when a company's management says on an earnings call
+"we expect 2% growth next quarter," that's called guidance. This project pulls
+that kind of statement out of real transcript PDFs (using AI), stores it in a
+database, and checks it against what the company actually reported afterward
+— to see whether management tends to over- or under-promise.
 
-**Status: prototype, working end-to-end on 2 real transcripts.** This is
-explicitly a proof of concept, not a production tool — see Limitations.
+**Current status:** working end-to-end on 2 real transcripts — a genuine
+working prototype, not a mockup, but explicitly small-scale (see Limitations).
+The Power BI **dashboard is not built yet** — what exists is the underlying
+data model (tables and formulas Power BI can read), not the actual charts.
+See "What's in this repo" below for exactly what that means.
+
+## What's in this repo — a map, in plain words
+
+| Folder / file | What it actually is |
+|---|---|
+| **README.md** (this file) | Start here. What the project does and what it found |
+| **scripts/** | Python programs that extract text, run AI extraction, load, and score |
+| **sql/** | The actual database questions (queries), written in SQL |
+| **exports/** | The query results, saved as spreadsheet-style CSV files |
+| **dashboard/** | Power BI data-model files (see status note above — no charts yet) |
+| **DASHBOARD.md** | Step-by-step instructions to finish building the visual dashboard |
+| **DECISIONS.md** | A log of tricky decisions made while building this, and why |
+| **QUESTIONS.md** | Practice interview questions about this project, with honest answers |
+
+If you only read one section below, read **What's actually been verified** —
+it's the real, honest state of this project in plain terms.
 
 ## Why this project exists
 
