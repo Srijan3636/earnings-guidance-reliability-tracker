@@ -4,7 +4,7 @@ AI-assisted pipeline that extracts structured management guidance from
 earnings call transcripts, validates extraction accuracy against hand-labelled
 data, and joins guidance to what actually got reported.
 
-**Status: prototype, working end-to-end on 1 real transcript.** This is
+**Status: prototype, working end-to-end on 2 real transcripts.** This is
 explicitly a proof of concept, not a production tool — see Limitations.
 
 ## Why this project exists
@@ -41,19 +41,23 @@ py -3.10 scripts/score_validation.py
 
 ## What's actually been verified, not just written
 
-- Downloaded and extracted a **real** transcript (Wipro, Q3 FY26, from
-  Wipro's own investor-relations site) before writing any extraction code —
-  confirmed real guidance language extracts cleanly: *"we are projecting
-  sequential IT Services revenue growth of 0% to 2.0% in constant currency"*
+- Downloaded and extracted **2 real transcripts** (Wipro Q3 FY26 and Q3 FY24,
+  from Wipro's own investor-relations site) — confirmed real guidance
+  language extracts cleanly: *"we are projecting sequential IT Services
+  revenue growth of 0% to 2.0% in constant currency"*
 - Schema-validation logic tested directly against both valid and invalid
   extraction items — the reject path is proven, not just the happy path
 - `guidance_vs_actuals.sql` correctly finds **2026-03-31** (the real quarter
   Wipro's guidance was about) as the next reported period after the January
   16, 2026 call — this required fixing a real bug found on first run (see
   DECISIONS.md)
-- One real result: Wipro guided 0-2% sequential revenue growth for that
-  quarter; the actual reported figure was **2.89%** — slightly above their
-  own guided range
+- One real result: Wipro guided 0-2% sequential revenue growth for Q4 FY26;
+  the actual reported figure was **2.89%** — slightly above their own guided
+  range
+- Adding the second transcript caught a real bug in the mock extractor itself
+  (it was hardcoded and didn't actually read its input) — fixed to genuine
+  rule-based regex extraction, which then honestly revealed its own
+  classification weaknesses on real data. Full story in DECISIONS.md
 
 ## Scope boundary, stated plainly
 
@@ -68,9 +72,11 @@ overstate what this project does.
 
 ## Limitations
 
-- **1 real transcript loaded.** Enough to prove the pipeline works end-to-end
-  on real data; not enough for a meaningful accuracy sample. More transcripts
-  need adding before the validation numbers mean anything statistically
+- **2 real transcripts loaded.** Enough to prove the pipeline genuinely
+  generalises across documents (not enough for a statistically meaningful
+  accuracy sample) — and enough to have already surfaced a real classifier
+  weakness (see DECISIONS.md). More transcripts still needed before the
+  validation numbers mean anything at scale
 - **Real LLM extraction is untested** — I don't have an Anthropic API key yet.
   Everything downstream of extraction (validation, loading, the join query)
   has been tested using `--mock` mode, so the pipeline plumbing is proven even

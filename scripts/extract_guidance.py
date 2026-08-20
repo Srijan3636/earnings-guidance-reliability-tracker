@@ -4,11 +4,11 @@ Extract structured guidance statements from transcript text using Claude.
 Every response is validated against the schema before being accepted — a
 malformed or non-JSON response is logged and skipped, not silently coerced.
 
-MOCK MODE: run with --mock to use canned extraction results instead of
-calling the API. This lets the full pipeline (extraction -> validation ->
-loading -> analysis) be built, tested, and pushed before an Anthropic API
-key exists. Real numbers only ever come from --mock or a real API call —
-never hardcoded as if they were real.
+MOCK MODE: run with --mock to use rule-based regex extraction instead of
+calling the API — genuinely derived from each transcript's real text (not
+hardcoded), just cruder than an LLM's semantic understanding. This lets the
+full pipeline (extraction -> validation -> loading -> analysis) be built,
+tested, and pushed before an Anthropic API key exists.
 
 Usage:
   py -3.10 scripts/extract_guidance.py --mock        (no API key needed)
@@ -17,6 +17,7 @@ Usage:
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -52,26 +53,50 @@ TRANSCRIPT:
 {transcript_text}
 """
 
-# Canned results for --mock mode, modeled on the real guidance statement
-# actually found in the Wipro Q3 FY26 transcript during development ("we are
-# projecting sequential IT Services revenue growth of 0% to 2.0% in constant
-# currency") — not invented from nothing, but not a live API call either.
-MOCK_RESULTS = [
-    {
-        "guidance_type": "revenue",
-        "stated_value": "0% to 2.0% sequential growth (constant currency)",
-        "direction": "range",
-        "confidence": "high",
-        "source_excerpt": "we are projecting sequential IT Services revenue growth of 0% to 2.0% in constant currency",
-    },
-    {
-        "guidance_type": "qualitative",
-        "stated_value": "continued focus on large deal wins and AI-led transformation",
-        "direction": "unclear",
-        "confidence": "medium",
-        "source_excerpt": "[MOCK] placeholder qualitative guidance excerpt",
-    },
-]
+# Rule-based sentence patterns for --mock mode. NOTE ON HONESTY: an earlier
+# version of this function ignored its transcript_text argument entirely and
+# always returned the same hardcoded Wipro quote — harmless with exactly one
+# transcript, but it would have fabricated identical "guidance" for every
+# company the moment a second transcript was added. Fixed to actually derive
+# results from each transcript's real text via regex, so every extraction is
+# a genuine sentence from that specific document. Still clearly weaker than
+# real LLM extraction (no semantic understanding, will miss guidance phrased
+# unusually and can false-positive on lookalike sentences) — that gap is the
+# honest reason --mock and real extraction are reported separately
+# (extracted_by = 'mock' vs 'llm'), never blended into one accuracy number.
+GUIDANCE_SENTENCE_PATTERN = re.compile(
+    r"([^.]*?\b(?:guidance|projecting|expect(?:ing)?|outlook|target(?:ing)?)\b"
+    r"[^.]*?\d+(?:\.\d+)?\s*%[^.]*\.)",
+    re.IGNORECASE,
+)
+QUALITATIVE_SENTENCE_PATTERN = re.compile(
+    r"([^.]*?\b(?:for (?:the )?(?:next|coming) quarter|going forward|we (?:will|plan to) continue)\b[^.]*\.)",
+    re.IGNORECASE,
+)
+
+
+def classify_guidance_type(sentence: str) -> str:
+    s = sentence.lower()
+    if "margin" in s:
+        return "margin"
+    if "headcount" in s or "hiring" in s or "attrition" in s:
+        return "headcount"
+    if "capex" in s or "capital expenditure" in s:
+        return "capex"
+    if "revenue" in s or "growth" in s:
+        return "revenue"
+    return "qualitative"
+
+
+def classify_direction(sentence: str) -> str:
+    s = sentence.lower()
+    if " to " in s and re.search(r"\d+(?:\.\d+)?\s*%.*\bto\b.*\d+(?:\.\d+)?\s*%", s):
+        return "range"
+    if any(w in s for w in ["decline", "lower", "down", "reduce"]):
+        return "down"
+    if any(w in s for w in ["grow", "increase", "higher", "up", "improve"]):
+        return "up"
+    return "unclear"
 
 
 def validate_item(item: dict) -> tuple[bool, str]:
@@ -89,7 +114,31 @@ def validate_item(item: dict) -> tuple[bool, str]:
 
 
 def extract_mock(transcript_text: str) -> list[dict]:
-    return MOCK_RESULTS
+    results = []
+    seen = set()
+
+    for pattern in (GUIDANCE_SENTENCE_PATTERN, QUALITATIVE_SENTENCE_PATTERN):
+        for m in pattern.finditer(transcript_text):
+            sentence = m.group(1).strip()
+            if sentence in seen or len(sentence) < 15:
+                continue
+            seen.add(sentence)
+
+            pct_match = re.search(r"\d+(?:\.\d+)?\s*%(?:\s*(?:to|-)\s*\d+(?:\.\d+)?\s*%)?", sentence)
+            stated_value = pct_match.group(0) if pct_match else sentence[:60]
+
+            results.append({
+                "guidance_type": classify_guidance_type(sentence),
+                "stated_value": stated_value,
+                "direction": classify_direction(sentence),
+                # rule-based matching is much cruder than semantic
+                # understanding, so confidence is capped at "medium" —
+                # never claims "high" the way a real LLM read might
+                "confidence": "medium" if pct_match else "low",
+                "source_excerpt": sentence,
+            })
+
+    return results
 
 
 def extract_real(transcript_text: str) -> list[dict]:

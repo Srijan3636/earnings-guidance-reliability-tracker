@@ -1,3 +1,34 @@
 source_file,item_index,extracted_guidance_type,extracted_stated_value,extracted_direction,source_excerpt,human_is_correct_extraction,human_correct_guidance_type,human_correct_stated_value,human_notes
-WIPRO_Q3FY26_transcript,0,revenue,0% to 2.0% sequential growth (constant currency),range,we are projecting sequential IT Services revenue growth of 0% to 2.0% in constant currency,,,,
-WIPRO_Q3FY26_transcript,1,qualitative,continued focus on large deal wins and AI-led transformation,unclear,[MOCK] placeholder qualitative guidance excerpt,,,,
+WIPRO_Q3FY24_transcript,0,qualitative,1.5%,unclear,"This
+translates to a sequential guidance of minus 1.5% to a plus 0.",,,,
+WIPRO_Q3FY24_transcript,1,qualitative,1.5%,down,"So, in that backdrop, I'm a little perplexed on how to reconcile the lower end of our guidance
+band at around 1.5% decline.",,,,
+WIPRO_Q3FY24_transcript,2,qualitative,"So I'll begin today's earnings call with, as
+always, an over",unclear,"So I'll begin today's earnings call with, as
+always, an overview of our third quarter results, details of our sectoral performance, the demand
+environment, of course, and then direction for the coming quarter.",,,,
+WIPRO_Q3FY24_transcript,3,qualitative,On to our guidance now for the next quarter.,unclear,On to our guidance now for the next quarter.,,,,
+WIPRO_Q3FY26_transcript,0,revenue,0%,up,"Finally, guidance for Quarter 4:
+Public
+Wipro Limited
+January 16, 2026
+In Quarter 4, we are projecting sequential IT Services revenue growth of 0% to 2.",,,,
+WIPRO_Q3FY26_transcript,1,qualitative,2%,unclear,"This
+translates to a sequential guidance of 0-2% in constant currency terms.",,,,
+WIPRO_Q3FY26_transcript,2,qualitative,0.02%,unclear,"And if I look at our guidance, it is 0.02% at the consol
+level.",,,,
+WIPRO_Q3FY26_transcript,3,revenue,"I just
+wanted your thoughts on that vertical and how do you ",up,"I just
+wanted your thoughts on that vertical and how do you see the deal pipeline there? When do you think
+this can sort of turn around? The second is, you alluded to some delays in ramp-ups impacting growth
+for next quarter.",,,,
+WIPRO_Q3FY26_transcript,4,qualitative,"By
+when do you see this sort of beginning to ramp up going f",up,"By
+when do you see this sort of beginning to ramp up going forward? And third, when are we expecting
+to have the wage hike cycle? Those are the three.",,,,
+WIPRO_Q3FY26_transcript,5,margin,"I think, you know, all credit to the team, we have been fair",unclear,"I think, you know, all credit to the team, we have been fairly resilient on
+margins, and we will continue our endeavor to keep it.",,,,
+WIPRO_Q3FY26_transcript,6,qualitative,"There is a spike in D&A in this
+quarter, any particular reas",unclear,"There is a spike in D&A in this
+quarter, any particular reason? And is that a normalized level going forward as well? Thank you.",,,,
+WIPRO_Q3FY26_transcript,7,qualitative,"So, yes, you should wait for the next quarter to get that mo",unclear,"So, yes, you should wait for the next quarter to get that more normalized in.",,,,

@@ -1,19 +1,73 @@
 [
   {
     "guidance_type": "revenue",
-    "stated_value": "0% to 2.0% sequential growth (constant currency)",
-    "direction": "range",
-    "confidence": "high",
-    "source_excerpt": "we are projecting sequential IT Services revenue growth of 0% to 2.0% in constant currency",
+    "stated_value": "0%",
+    "direction": "up",
+    "confidence": "medium",
+    "source_excerpt": "Finally, guidance for Quarter 4:\nPublic\nWipro Limited\nJanuary 16, 2026\nIn Quarter 4, we are projecting sequential IT Services revenue growth of 0% to 2.",
     "extracted_by": "mock",
     "source_file": "WIPRO_Q3FY26_transcript.txt"
   },
   {
     "guidance_type": "qualitative",
-    "stated_value": "continued focus on large deal wins and AI-led transformation",
+    "stated_value": "2%",
     "direction": "unclear",
     "confidence": "medium",
-    "source_excerpt": "[MOCK] placeholder qualitative guidance excerpt",
+    "source_excerpt": "This\ntranslates to a sequential guidance of 0-2% in constant currency terms.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY26_transcript.txt"
+  },
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "0.02%",
+    "direction": "unclear",
+    "confidence": "medium",
+    "source_excerpt": "And if I look at our guidance, it is 0.02% at the consol\nlevel.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY26_transcript.txt"
+  },
+  {
+    "guidance_type": "revenue",
+    "stated_value": "I just\nwanted your thoughts on that vertical and how do you ",
+    "direction": "up",
+    "confidence": "low",
+    "source_excerpt": "I just\nwanted your thoughts on that vertical and how do you see the deal pipeline there? When do you think\nthis can sort of turn around? The second is, you alluded to some delays in ramp-ups impacting growth\nfor next quarter.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY26_transcript.txt"
+  },
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "By\nwhen do you see this sort of beginning to ramp up going f",
+    "direction": "up",
+    "confidence": "low",
+    "source_excerpt": "By\nwhen do you see this sort of beginning to ramp up going forward? And third, when are we expecting\nto have the wage hike cycle? Those are the three.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY26_transcript.txt"
+  },
+  {
+    "guidance_type": "margin",
+    "stated_value": "I think, you know, all credit to the team, we have been fair",
+    "direction": "unclear",
+    "confidence": "low",
+    "source_excerpt": "I think, you know, all credit to the team, we have been fairly resilient on\nmargins, and we will continue our endeavor to keep it.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY26_transcript.txt"
+  },
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "There is a spike in D&A in this\nquarter, any particular reas",
+    "direction": "unclear",
+    "confidence": "low",
+    "source_excerpt": "There is a spike in D&A in this\nquarter, any particular reason? And is that a normalized level going forward as well? Thank you.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY26_transcript.txt"
+  },
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "So, yes, you should wait for the next quarter to get that mo",
+    "direction": "unclear",
+    "confidence": "low",
+    "source_excerpt": "So, yes, you should wait for the next quarter to get that more normalized in.",
     "extracted_by": "mock",
     "source_file": "WIPRO_Q3FY26_transcript.txt"
   }

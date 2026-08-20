@@ -1,9 +1,10 @@
 # Power BI Dashboard — Build Guide
 
-**Status note:** this project currently has 1 real transcript loaded (Wipro,
-Q3 FY26) — enough to prove the pipeline works, not enough for a meaningful
-dashboard yet. This guide is written to work as-is with more transcripts
-added later; nothing below needs to change as the data grows.
+**Status note:** this project currently has 2 real transcripts loaded (Wipro
+Q3 FY26 and Q3 FY24) — enough to prove the pipeline generalises, not yet
+enough for a statistically meaningful dashboard. This guide is written to
+work as-is with more transcripts added later; nothing below needs to change
+as the data grows.
 
 ## 1. Connect
 

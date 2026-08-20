@@ -1,2 +1,11 @@
 ticker,name,guidance_given_in_quarter,guidance_call_date,guidance_stated_value,guidance_direction,extraction_confidence,next_reported_period,actual_revenue_qoq_growth_pct,source_excerpt
-WIPRO.NS,Wipro,WIPRO_Q3FY26_transcript,2026-01-16,0% to 2.0% sequential growth (constant currency),range,high,2026-03-31,2.89,we are projecting sequential IT Services revenue growth of 0% to 2.0% in constant currency
+WIPRO.NS,Wipro,WIPRO_Q3FY26_transcript,2026-01-16,0%,up,medium,2026-03-31,2.89,"Finally, guidance for Quarter 4:
+Public
+Wipro Limited
+January 16, 2026
+In Quarter 4, we are projecting sequential IT Services revenue growth of 0% to 2."
+WIPRO.NS,Wipro,WIPRO_Q3FY26_transcript,2026-01-16,"I just
+wanted your thoughts on that vertical and how do you ",up,low,2026-03-31,2.89,"I just
+wanted your thoughts on that vertical and how do you see the deal pipeline there? When do you think
+this can sort of turn around? The second is, you alluded to some delays in ramp-ups impacting growth
+for next quarter."

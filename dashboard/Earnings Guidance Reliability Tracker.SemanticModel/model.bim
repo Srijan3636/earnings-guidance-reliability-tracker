@@ -12,13 +12,13 @@
     "tables": [
       {
         "name": "guidance_raw",
-        "lineageTag": "e57e1f96-e0a1-4f89-9733-76b34cd31029",
+        "lineageTag": "84f3d87d-c7e7-476a-a60f-1d5c05bfee8a",
         "columns": [
           {
             "name": "guidance_id",
             "dataType": "int64",
             "sourceColumn": "guidance_id",
-            "lineageTag": "42e995cb-105a-4b6c-a9d9-91de650e6f60",
+            "lineageTag": "df78a52f-5b7d-4324-b5c6-1f79039acac8",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -31,7 +31,7 @@
             "name": "transcript_id",
             "dataType": "int64",
             "sourceColumn": "transcript_id",
-            "lineageTag": "8b394a9a-98d3-4775-bc6e-c4bf0af0e18a",
+            "lineageTag": "3742a2b0-93d1-459f-be4c-69c6cfd11120",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -44,7 +44,7 @@
             "name": "company_id",
             "dataType": "int64",
             "sourceColumn": "company_id",
-            "lineageTag": "687f3b82-b63c-45be-8fae-8570d7c22e51",
+            "lineageTag": "88a6257e-60b7-4b7e-ad0f-969e7d4ff50f",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -57,7 +57,7 @@
             "name": "guidance_type",
             "dataType": "string",
             "sourceColumn": "guidance_type",
-            "lineageTag": "89c48e17-42c6-4008-b51d-27ffa151ae17",
+            "lineageTag": "047a0d4e-e88d-4ba4-b90e-07cd3cd4b56b",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -70,7 +70,7 @@
             "name": "stated_value",
             "dataType": "string",
             "sourceColumn": "stated_value",
-            "lineageTag": "e04c0e72-ea26-4847-a9dd-090626acfc33",
+            "lineageTag": "fb1ccaa1-8d1c-4d25-9b45-58ad29cb4bd8",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -83,7 +83,7 @@
             "name": "direction",
             "dataType": "string",
             "sourceColumn": "direction",
-            "lineageTag": "0b789eb4-d78f-4731-aa43-5c667fe82cfd",
+            "lineageTag": "9633440f-f1d2-4d01-82b1-44ea36c19ab3",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -96,7 +96,7 @@
             "name": "confidence",
             "dataType": "string",
             "sourceColumn": "confidence",
-            "lineageTag": "dbecde28-7ba6-40e6-9ce2-b9714a722d72",
+            "lineageTag": "6a6a65bd-9ba8-49ff-a9d3-e7eda9afdaab",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -109,7 +109,7 @@
             "name": "source_excerpt",
             "dataType": "string",
             "sourceColumn": "source_excerpt",
-            "lineageTag": "f13e0d2d-eb95-40d4-a8f9-b91745a7995a",
+            "lineageTag": "55fb86ca-9b42-4304-a2db-1fc0e807735b",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -122,7 +122,7 @@
             "name": "extracted_by",
             "dataType": "string",
             "sourceColumn": "extracted_by",
-            "lineageTag": "67472b16-6892-43e9-96fd-7830464d652b",
+            "lineageTag": "34a93456-aa4b-4297-be3d-9550c2007887",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -135,7 +135,7 @@
             "name": "created_at",
             "dataType": "string",
             "sourceColumn": "created_at",
-            "lineageTag": "a727e8a7-6f8e-4778-a590-f8e26ea55556",
+            "lineageTag": "a5066898-b0e4-431b-b25b-d7d0f4c10a4c",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -148,7 +148,7 @@
             "name": "ticker",
             "dataType": "string",
             "sourceColumn": "ticker",
-            "lineageTag": "f279d340-fbe6-42b5-8503-d8b631cfb082",
+            "lineageTag": "245fe837-0e53-4f07-9eb1-8086b59445a6",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -161,7 +161,7 @@
             "name": "name",
             "dataType": "string",
             "sourceColumn": "name",
-            "lineageTag": "233d3ab1-66dd-4d34-9362-706d6c8988c3",
+            "lineageTag": "9a860cbf-e03e-473c-a758-fbdc5da048a1",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -174,7 +174,7 @@
             "name": "quarter_label",
             "dataType": "string",
             "sourceColumn": "quarter_label",
-            "lineageTag": "8c62568e-77a1-4942-945d-727c1ec3ee50",
+            "lineageTag": "f281cc10-cb73-44e9-b865-e26e5628f93c",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -198,29 +198,29 @@
           {
             "name": "Total Guidance Statements",
             "expression": "COUNTROWS(guidance_raw)",
-            "lineageTag": "b989f23c-6cb5-49f0-886e-1aa19ac24855"
+            "lineageTag": "2b38f2c8-4221-4fe5-9ec6-4fe848a9c23b"
           },
           {
             "name": "High Confidence Statements",
             "expression": "CALCULATE(COUNTROWS(guidance_raw), guidance_raw[confidence] = \"high\")",
-            "lineageTag": "554c8248-55f6-41f1-9c79-ac16fcfcfb08"
+            "lineageTag": "1dd86c1e-b48c-4a08-b223-d8227a724308"
           },
           {
             "name": "Real vs Mock Extractions",
             "expression": "CALCULATE(COUNTROWS(guidance_raw), guidance_raw[extracted_by] = \"llm\")",
-            "lineageTag": "e0de1239-bd3b-4dda-888a-3f9dd6b589cc"
+            "lineageTag": "d3e6580d-a8c4-4207-870a-f1cd441c129d"
           }
         ]
       },
       {
         "name": "guidance_vs_actuals",
-        "lineageTag": "8ea09720-a3dc-49b0-9900-a3f670baec0f",
+        "lineageTag": "d0e5c202-2ccf-4e50-ad06-10a06d49ce39",
         "columns": [
           {
             "name": "ticker",
             "dataType": "string",
             "sourceColumn": "ticker",
-            "lineageTag": "8045097c-5ce6-49f0-81c3-0c5a0937d6ce",
+            "lineageTag": "6460173f-0190-444a-b3f7-283ca7268c0a",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -233,7 +233,7 @@
             "name": "name",
             "dataType": "string",
             "sourceColumn": "name",
-            "lineageTag": "c3343cb1-2ef3-4a0a-a5c2-8a461789d46c",
+            "lineageTag": "42639dad-1618-4904-8242-62cc2bd05293",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -246,7 +246,7 @@
             "name": "guidance_given_in_quarter",
             "dataType": "string",
             "sourceColumn": "guidance_given_in_quarter",
-            "lineageTag": "14f66a9b-43fe-4fab-89f7-bc589e45532d",
+            "lineageTag": "6aa7b61d-2f3e-49ea-b68f-534ef7a7f18a",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -259,7 +259,7 @@
             "name": "guidance_call_date",
             "dataType": "string",
             "sourceColumn": "guidance_call_date",
-            "lineageTag": "96debac5-4818-4635-8240-c513eeab9f5d",
+            "lineageTag": "c4ae85da-dba2-46b3-a09a-fb3ab42b2c98",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -272,7 +272,7 @@
             "name": "guidance_stated_value",
             "dataType": "string",
             "sourceColumn": "guidance_stated_value",
-            "lineageTag": "e9229dbd-ebc4-44db-a05f-cd6bcce5dd54",
+            "lineageTag": "f25983a1-4bbf-4441-96a4-05ef49dc9857",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -285,7 +285,7 @@
             "name": "guidance_direction",
             "dataType": "string",
             "sourceColumn": "guidance_direction",
-            "lineageTag": "4ce499e3-2ca0-4c03-b240-12e89bc12718",
+            "lineageTag": "a13c308f-8df9-4537-b73d-63888bb4f718",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -298,7 +298,7 @@
             "name": "extraction_confidence",
             "dataType": "string",
             "sourceColumn": "extraction_confidence",
-            "lineageTag": "1dfc1ff0-f519-46b8-b47b-e600f471d5bd",
+            "lineageTag": "adb9b5c0-fd23-4d99-9432-de25bfe0317e",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -311,7 +311,7 @@
             "name": "next_reported_period",
             "dataType": "string",
             "sourceColumn": "next_reported_period",
-            "lineageTag": "4df76d57-a8d8-40c4-b4c7-d5152b75e8f1",
+            "lineageTag": "008ff57e-12c7-4e11-9081-e3da1f477432",
             "summarizeBy": "none",
             "annotations": [
               {
@@ -324,7 +324,7 @@
             "name": "actual_revenue_qoq_growth_pct",
             "dataType": "double",
             "sourceColumn": "actual_revenue_qoq_growth_pct",
-            "lineageTag": "d18e9aaa-51a7-4f5a-a6d7-4de958d8977d",
+            "lineageTag": "c424064a-6b27-4bed-b5ae-207c51a619f3",
             "summarizeBy": "sum",
             "annotations": [
               {
@@ -337,7 +337,7 @@
             "name": "source_excerpt",
             "dataType": "string",
             "sourceColumn": "source_excerpt",
-            "lineageTag": "01dea703-79c8-4ab7-a440-19312ea6da0c",
+            "lineageTag": "d3156b92-07ea-4b9d-a6b7-5319bba73dd8",
             "summarizeBy": "none",
             "annotations": [
               {

@@ -11,7 +11,7 @@ data — extracting guidance with an LLM, then joining it against what actually
 got reported.
 
 **Q: Does it really solve a problem?**
-At the scale I built it — one prototype, one real transcript — no, it's not
+At the scale I built it — one prototype, two real transcripts — no, it's not
 something a fund would use today, and I won't pretend otherwise. What it
 proves out is the workflow: can you reliably extract a structured claim from
 unstructured text, and can you trust the extraction enough to act on it. The
@@ -40,11 +40,19 @@ validation, loading, and the guidance-vs-actuals join against that real
 pipeline. The plumbing is proven; the model call is the one piece that isn't
 yet.
 
-**Q: What did you find, even with just one transcript?**
-Wipro guided "0% to 2.0% sequential revenue growth" for Q4 FY26. The actual
-reported figure was 2.89% — slightly above the top of their own guided range.
-One data point isn't a pattern, but it's a real, verified comparison, not a
-placeholder.
+**Q: What did you find, even with just two transcripts?**
+Two things. First, a real result: Wipro guided "0% to 2.0% sequential revenue
+growth" for Q4 FY26, and the actual reported figure was 2.89% — slightly
+above the top of their own guided range. Second, adding the second transcript
+immediately caught a real bug in my own mock extractor — it was hardcoded and
+returned the same canned quote regardless of input, which would have silently
+fabricated identical "guidance" for every company the moment I added more
+data. Fixed it to genuine rule-based extraction, and that fix then honestly
+revealed its own weakness: the keyword classifier mis-tagged Wipro's real
+Q3FY24 revenue guidance as "qualitative" because that specific sentence
+didn't contain the literal word "revenue." I didn't tune the regex to hide
+that — it's exactly the kind of error the human-labelling step exists to
+catch.
 
 **Q: Why doesn't the join query automatically score guidance as right or
 wrong?**
@@ -64,6 +72,19 @@ transcript's own header text via regex, and filtering the join on
 `period_end > call_date`.
 
 **Q: What would you do differently, or do next?**
-Add more transcripts — I have exactly one, downloaded to prove the pipeline
-works on real data, not to make a real accuracy claim. And build the guidance
-parser (see above) — the biggest genuine limitation of what's here today.
+Add more transcripts — I have two, enough to prove the pipeline genuinely
+generalises across documents, not enough for a real accuracy claim. Improve
+the mock classifier's `guidance_type` detection beyond simple keyword
+matching (the Q3FY24 misclassification above is the concrete example of where
+it breaks). And build the guidance-range parser — the biggest genuine
+limitation of what's here today.
+
+**Q: Your rule-based mock mode has real false positives — doesn't that
+undermine the project?**
+No, the opposite — a suspiciously perfect mock extractor would be the thing
+to distrust. One of the 12 extracted items is literally an analyst's question
+("I just wanted your thoughts on that vertical...") that got matched by the
+regex and mis-tagged as guidance. I left it in rather than quietly filtering
+it out, because that's precisely what the human-labelling step is for: a real
+person reads `source_excerpt` against what got extracted and marks it wrong.
+A validation process that never catches anything isn't validating anything.

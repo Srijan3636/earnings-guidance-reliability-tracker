@@ -86,6 +86,48 @@ database would break that.
 
 ---
 
+## Mock mode was hardcoded and didn't scale — fixed, and the fix revealed a real limitation
+
+**What happened:** the original `extract_mock()` ignored its `transcript_text`
+argument entirely and always returned the same hardcoded Wipro quote. Harmless
+with exactly one transcript loaded; it would have silently fabricated identical
+"guidance" attributed to every company the moment a second transcript was added
+— a real integrity problem, not a cosmetic one, since `source_excerpt` is
+supposed to be an actual quote from that specific document.
+
+**Fix:** rewrote `extract_mock()` as genuine rule-based extraction — regex over
+guidance-keyword sentences containing a percentage, classified by simple keyword
+rules into `guidance_type` and `direction`. Confidence capped at `medium`/`low`,
+never `high` — a crude regex has no business claiming the confidence a real LLM
+read would.
+
+**Tested by adding a second real transcript** (Wipro Q3 FY24, downloaded from
+Wipro's own investor-relations site) and confirming the two transcripts produce
+genuinely different, document-specific results (4 items vs. 8), not copies of
+each other.
+
+**What that test then revealed, honestly:** Q3FY24's real guidance sentence
+("sequential guidance of minus 1.5% to a plus...") doesn't contain the literal
+words "revenue" or "growth", so the keyword classifier tagged it `qualitative`
+instead of `revenue` — meaning it's excluded from `guidance_vs_actuals.sql`,
+which filters to `guidance_type = 'revenue'`. Also found a clean false-positive
+example: an analyst's question ("I just wanted your thoughts on that
+vertical...") got matched by the regex and mis-tagged as revenue guidance.
+
+**Decision: did not tune the regex to fix either case.** Doing so would be
+curve-fitting the extractor to look good on the two specific transcripts I
+happen to have, which defeats the actual point. Both are exactly the kind of
+error the human-labelling step (`make_labelling_template.py` →
+`score_validation.py`) exists to catch — leaving them in place, visible in the
+raw output, is more honest than quietly patching them out. This is also a good,
+concrete answer to "where does mock mode actually fail" if asked in an
+interview: keyword classification of `guidance_type` is measurably unreliable
+even on 2 real documents, which real LLM extraction (semantic understanding
+rather than keyword matching) should meaningfully improve on — a testable claim
+once a key is added, not just an assumption.
+
+---
+
 ## Bug found on first real run: "next reported period" was actually the earliest one on file
 
 **What happened:** first real execution of `guidance_vs_actuals.sql` against the

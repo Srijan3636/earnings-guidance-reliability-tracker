@@ -1,0 +1,38 @@
+[
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "1.5%",
+    "direction": "unclear",
+    "confidence": "medium",
+    "source_excerpt": "This\ntranslates to a sequential guidance of minus 1.5% to a plus 0.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY24_transcript.txt"
+  },
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "1.5%",
+    "direction": "down",
+    "confidence": "medium",
+    "source_excerpt": "So, in that backdrop, I'm a little perplexed on how to reconcile the lower end of our guidance\nband at around 1.5% decline.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY24_transcript.txt"
+  },
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "So I'll begin today's earnings call with, as\nalways, an over",
+    "direction": "unclear",
+    "confidence": "low",
+    "source_excerpt": "So I'll begin today's earnings call with, as\nalways, an overview of our third quarter results, details of our sectoral performance, the demand\nenvironment, of course, and then direction for the coming quarter.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY24_transcript.txt"
+  },
+  {
+    "guidance_type": "qualitative",
+    "stated_value": "On to our guidance now for the next quarter.",
+    "direction": "unclear",
+    "confidence": "low",
+    "source_excerpt": "On to our guidance now for the next quarter.",
+    "extracted_by": "mock",
+    "source_file": "WIPRO_Q3FY24_transcript.txt"
+  }
+]
